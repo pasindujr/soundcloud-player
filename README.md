@@ -12,7 +12,7 @@ Simple Soundcloud playlist creator using Soundcloud API.
 
 1. Even though this is the 2nd section, I want to tackle this first.
 2. You can read more about the "Search" function in [Soundcloud docs.](https://developers.soundcloud.com/docs/api/guide#search) 
-3. I copied the code in Soundcloud docs and edited as I want (Removed `<script>` tags, removed license filter and put the "Client Id")
+3. I copied the code in Soundcloud docs and refactored as I want (Removed `<script>` tags, removed license filter and put the "Client Id")
 ```
 SC.initialize({
   client_id: 'Client Id'
@@ -23,4 +23,26 @@ SC.get('/tracks', {
 }).then(function(tracks) {
   console.log(tracks);
 });
+```
+4. Then I created `SoundCloudAPI` object and `SoundCloudAPI.init()`, `SoundCloudAPI.getTracks()` functions, so I can call those functions easily.
+```
+SoundCloudAPI.init = function() {
+  
+SC.initialize({
+  client_id: 'Client Id'
+});
+}
+
+SoundCloudAPI.init();
+
+SoundCloudAPI.getTracks = function(inputValue) {
+
+SC.get('/tracks', {
+  q: inputValue,
+}).then(function(tracks) {
+  console.log(tracks);
+});
+}
+
+SoundCloudAPI.getTracks("Sinhala songs");
 ```
