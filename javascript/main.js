@@ -53,7 +53,7 @@ SoundCloudAPI.renderTracks = function () {
 
   var span = document.createElement("span");
   iconAndSpanSelector.appendChild(span);
-  span.innerHTML = ("Add to playlist")
+  span.innerHTML = ("Add to playlist");
 
 
 };
