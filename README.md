@@ -46,3 +46,4 @@ SC.get('/tracks', {
 
 SoundCloudAPI.getTracks("Sinhala songs");
 ```
+5. Created `renderTracks()` function to print/render all the result tracks as cards, so the cards can be rendered dynamically and easily looped through.
