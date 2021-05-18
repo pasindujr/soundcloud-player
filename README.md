@@ -65,3 +65,10 @@ SC.oEmbed('https://soundcloud.com/forss/flickermood', {
 ```
 4. Modified the code to place the "embedded player" on the left sidebar and pass the music dynamically (Music passing `clickEvent` is coded inside "Displaying Cards" section)
 5. Used `insertBefore()` method to stack the music in the `.js-playlist` div.
+6. Then I used `localStorage` to save the created playlist for the user even if exited.
+
+## Search Function
+
+1. Created `Search` object.
+2. Created 2 functions `pressEnter()` and `click()` using the object.
+3. Those two functions are used to get the search keyword when pressed "enter" or clicked the search icon.

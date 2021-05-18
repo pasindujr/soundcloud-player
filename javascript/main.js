@@ -1,5 +1,29 @@
 // 1. Search Soundcloud.
 
+var Search = {};
+
+Search.pressEnter = function() {
+	var search = document.querySelector(".input");
+	search.addEventListener("keyup", function(e) {
+		if(e.which == 13){
+			SoundCloudAPI.getTracks(search.value);
+		}
+	});
+}
+
+Search.pressEnter();
+
+Search.click = function() {
+	var search = document.querySelector(".search");
+	search.addEventListener("click", function() {
+		var input = document.querySelector(".input");
+		SoundCloudAPI.getTracks(input.value);
+	});
+}
+
+Search.click();
+
+
 // 2. Query Soundcloud API.
 
 var SoundCloudAPI = {};
@@ -20,8 +44,6 @@ SoundCloudAPI.getTracks = function (inputValue) {
 		SoundCloudAPI.renderTracks(tracks);
 	});
 };
-
-SoundCloudAPI.getTracks("Sinhala songs");
 
 // 3. Display the cards.
 
@@ -99,5 +121,12 @@ SoundCloudAPI.getEmbed = function (trackURL) {
 		box.innerHTML = embed.html;
 
 		sideBar.insertBefore(box, sideBar.firstChild);
+		localStorage.setItem("key", sideBar.innerHTML)
 	});
 };
+
+var sideBar = document.querySelector(".js-playlist");
+sideBar.innerHTML = localStorage.getItem("key");
+
+// 5. Reset function
+
