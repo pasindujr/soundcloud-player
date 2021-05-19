@@ -35,17 +35,20 @@ SC.initialize({
 
 SoundCloudAPI.init();
 
-SoundCloudAPI.getTracks = function(inputValue) {
-
-SC.get('/tracks', {
-  q: inputValue,
-}).then(function(tracks) {
-  console.log(tracks);
-});
-}
-
-SoundCloudAPI.getTracks("Sinhala songs");
+SoundCloudAPI.getTracks = function (inputValue) {
+	SC.get("/tracks", {
+		q: inputValue
+	}).then(function (tracks) {
+		if(inputValue === "") {
+			alert("You have entered an empty keyword");
+		} else {
+			console.log(inputValue);
+			SoundCloudAPI.renderTracks(tracks);
+		}
+	});
+};
 ```
+5. Used an `if` condition to avoid searching empty keywords.
 
 ## Displaying Cards.
 
@@ -72,3 +75,7 @@ SC.oEmbed('https://soundcloud.com/forss/flickermood', {
 1. Created `Search` object.
 2. Created 2 functions `pressEnter()` and `click()` using the object.
 3. Those two functions are used to get the search keyword when pressed "enter" or clicked the search icon.
+
+## Reset Function
+
+1. As a extra, added a "Reset" button to clear the `localStorage()` and reload the page.

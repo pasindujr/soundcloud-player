@@ -2,28 +2,26 @@
 
 var Search = {};
 
-Search.pressEnter = function() {
+Search.pressEnter = function () {
 	var search = document.querySelector(".input-search");
-	search.addEventListener("keyup", function(e) {
-		if(e.which == 13){
+	search.addEventListener("keyup", function (e) {
+		if (e.which == 13) {
 			SoundCloudAPI.getTracks(search.value);
 		}
 	});
-}
+};
 
 Search.pressEnter();
 
-Search.click = function() {
+Search.click = function () {
 	var search = document.querySelector(".js-submit");
-	search.addEventListener("click", function() {
+	search.addEventListener("click", function () {
 		var input = document.querySelector(".input-search");
 		SoundCloudAPI.getTracks(input.value);
 	});
-	
-}
+};
 
 Search.click();
-
 
 // 2. Query Soundcloud API.
 
@@ -39,10 +37,14 @@ SoundCloudAPI.init();
 
 SoundCloudAPI.getTracks = function (inputValue) {
 	SC.get("/tracks", {
-		q: inputValue
+		q: inputValue,
 	}).then(function (tracks) {
-		console.log(inputValue);
-		SoundCloudAPI.renderTracks(tracks);
+		if (inputValue === "") {
+			alert("You have entered an empty keyword");
+		} else {
+			console.log(inputValue);
+			SoundCloudAPI.renderTracks(tracks);
+		}
 	});
 };
 
@@ -122,7 +124,7 @@ SoundCloudAPI.getEmbed = function (trackURL) {
 		box.innerHTML = embed.html;
 
 		sideBar.insertBefore(box, sideBar.firstChild);
-		localStorage.setItem("key", sideBar.innerHTML)
+		localStorage.setItem("key", sideBar.innerHTML);
 	});
 };
 
@@ -133,5 +135,5 @@ sideBar.innerHTML = localStorage.getItem("key");
 var reset = document.querySelector(".reset-button");
 reset.addEventListener("click", function () {
 	localStorage.clear();
+	location.reload();
 });
-
